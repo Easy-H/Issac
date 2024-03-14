@@ -1,0 +1,46 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1df391f9a81fc4c4e87a61a4fc24e67d, type: 3}
+  m_Name: DefaultLayout
+  m_EditorClassIdentifier: 
+  _type: 00000000010000000100000002000000010000000300000001000000040000000400000004000000020000000100000001000000030000000100000005000000
+  _edges:
+  - ParentIdx: 0
+    ChildIdx: 1
+  - ParentIdx: 1
+    ChildIdx: 2
+  - ParentIdx: 2
+    ChildIdx: 3
+  - ParentIdx: 3
+    ChildIdx: 4
+  - ParentIdx: 4
+    ChildIdx: 5
+  - ParentIdx: 3
+    ChildIdx: 6
+  - ParentIdx: 6
+    ChildIdx: 7
+  - ParentIdx: 7
+    ChildIdx: 8
+  - ParentIdx: 8
+    ChildIdx: 9
+  - ParentIdx: 6
+    ChildIdx: 10
+  - ParentIdx: 10
+    ChildIdx: 11
+  - ParentIdx: 11
+    ChildIdx: 12
+  - ParentIdx: 12
+    ChildIdx: 13
+  - ParentIdx: 10
+    ChildIdx: 14
+  - ParentIdx: 14
+    ChildIdx: 15
