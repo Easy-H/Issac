@@ -27,15 +27,15 @@ public class MapMaker : MonoBehaviour {
         else selectedData = _graphData[Random.Range(0, _graphData.Length)];
 
         MapData data = new MapData(selectedData);
-        MapTile rootTile = _GenerateMap(data.Root);
+        IRoom rootTile = _GenerateMap(data.Root);
 
-        Instantiate(_player, rootTile.transform.position, Quaternion.identity);
+        Instantiate(_player, rootTile.GetPosition(), Quaternion.identity);
         
     }
 
-    MapTile _GenerateMap(MapData.Entry entry) {
+    IRoom _GenerateMap(MapData.Entry entry) {
 
-        MapTile tile = _GenerateTile(entry.data.type, entry.data.pos);
+        IRoom tile = _GenerateTile(entry.data.type, entry.data.pos);
 
         foreach (MapData.Entry child in entry.GetChild()) {
             _Joint(tile, _GenerateMap(child));
@@ -45,17 +45,17 @@ public class MapMaker : MonoBehaviour {
         
     }
 
-    MapTile _GenerateTile (MapTile.TileType type, Vector2 pos)
+    IRoom _GenerateTile (IRoom.RoomType type, Vector2 pos)
     {
 
-        MapTile generated = Instantiate(_mapTilePrefab, _mapTr);
+        IRoom generated = Instantiate(_mapTilePrefab, _mapTr);
         generated.Set(pos * _gridSize, type);
 
         return generated;
 
     }
 
-    void _Joint(MapTile tile1, MapTile tile2)
+    void _Joint(IRoom tile1, IRoom tile2)
     {
         Joint j = Instantiate(_joint, _mapTr);
         j.Set(tile1, tile2);
@@ -68,10 +68,10 @@ public class MapData : Graph<MapData.MapDataUnit> {
     [SerializeField] Vector2[] posDir = new Vector2[4] { Vector2.up, Vector2.right, Vector2.down, Vector2.left };
 
     public class MapDataUnit {
-        public MapTile.TileType type;
+        public IRoom.RoomType type;
         public Vector2 pos;
 
-        public MapDataUnit(MapTile.TileType type, Vector2 pos)
+        public MapDataUnit(IRoom.RoomType type, Vector2 pos)
         {
             this.type = type;
             this.pos = pos;
@@ -83,9 +83,9 @@ public class MapData : Graph<MapData.MapDataUnit> {
 
     Entry[] _entrys;
 
-    public MapData(Graph<MapTile.TileType>.GraphData layout) {
+    public MapData(IGraph<IRoom.RoomType>.GraphData layout) {
 
-        MapTile.TileType[] entryData = layout.GetData();
+        IRoom.RoomType[] entryData = layout.GetData();
         _entrys = new Entry[entryData.Length];
 
         for (int i = 0; i < entryData.Length; i++)
@@ -94,7 +94,7 @@ public class MapData : Graph<MapData.MapDataUnit> {
         }
         Root = _entrys[0];
 
-        foreach (Graph<MapTile.TileType>.Edge edge in layout.GetEdge())
+        foreach (IGraph<IRoom.RoomType>.Edge edge in layout.GetEdge())
         {
             if (edge.ParentIdx > _entrys.Length || edge.ChildIdx > _entrys.Length) continue;
 

@@ -4,15 +4,9 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapTile : MonoBehaviour
+public class MapTile : MonoBehaviour, IRoom
 {
     [SerializeField] Vector2 _size;
-
-
-    public enum TileType {
-        Root, Normal, Hub, Reward, Boss, Shop
-    }
-
 
     public Vector2 Size { get { return _size; } }
 
@@ -24,8 +18,7 @@ public class MapTile : MonoBehaviour
     [SerializeField] SpriteRenderer spr;
     [SerializeField] Text _txt;
 
-    // Start is called before the first frame update
-    public void Set(Vector2 pos, TileType type)
+    public void Set(Vector2 pos, IRoom.RoomType type)
     {
         transform.position = pos;
         name = type.ToString();
@@ -72,6 +65,10 @@ public class MapTile : MonoBehaviour
             return;
         }
         _upJoint.SetActive(false);
+    }
+
+    public Vector3 GetPosition() {
+        return transform.position;
     }
 
 }

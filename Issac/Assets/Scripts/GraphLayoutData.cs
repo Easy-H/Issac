@@ -1,38 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static Graph<MapTile.TileType>;
+using static IGraph<IRoom.RoomType>;
 
 [CreateAssetMenu(fileName = "Graph", menuName = "Layout/Graph", order = 2)]
+
 public class GraphLayoutData : ScriptableObject, GraphData {
 
-    public MapTile.TileType[] _type;
+    public IRoom.RoomType[] _type;
     public Edge[] _edges;
 
     public static GraphLayoutData GetDefault() { 
         GraphLayoutData data = new GraphLayoutData();
 
-        data._type = new MapTile.TileType[16];
+        data._type = new IRoom.RoomType[16];
 
-        data._type[0] = MapTile.TileType.Root;
-        data._type[1] = MapTile.TileType.Normal;
-        data._type[2] = MapTile.TileType.Normal;
-        data._type[3] = MapTile.TileType.Hub;
-        data._type[4] = MapTile.TileType.Normal;
-        data._type[5] = MapTile.TileType.Reward;
+        data._type[0] = IRoom.RoomType.Root;
+        data._type[1] = IRoom.RoomType.Normal;
+        data._type[2] = IRoom.RoomType.Normal;
+        data._type[3] = IRoom.RoomType.Hub;
+        data._type[4] = IRoom.RoomType.Normal;
+        data._type[5] = IRoom.RoomType.Reward;
 
-        data._type[6] = MapTile.TileType.Normal;
-        data._type[7] = MapTile.TileType.Boss;
-        data._type[8] = MapTile.TileType.Boss;
-        data._type[9] = MapTile.TileType.Boss;
+        data._type[6] = IRoom.RoomType.Normal;
+        data._type[7] = IRoom.RoomType.Boss;
+        data._type[8] = IRoom.RoomType.Boss;
+        data._type[9] = IRoom.RoomType.Boss;
 
-        data._type[10] = MapTile.TileType.Hub;
-        data._type[11] = MapTile.TileType.Normal;
-        data._type[12] = MapTile.TileType.Normal;
-        data._type[13] = MapTile.TileType.Reward;
+        data._type[10] = IRoom.RoomType.Hub;
+        data._type[11] = IRoom.RoomType.Normal;
+        data._type[12] = IRoom.RoomType.Normal;
+        data._type[13] = IRoom.RoomType.Reward;
 
-        data._type[14] = MapTile.TileType.Normal;
-        data._type[15] = MapTile.TileType.Shop;
+        data._type[14] = IRoom.RoomType.Normal;
+        data._type[15] = IRoom.RoomType.Shop;
 
         data._edges = new Edge[15];
 
@@ -55,7 +56,7 @@ public class GraphLayoutData : ScriptableObject, GraphData {
         return data;
     }
 
-    public MapTile.TileType[] GetData()
+    public IRoom.RoomType[] GetData()
     {
         return _type;
     }

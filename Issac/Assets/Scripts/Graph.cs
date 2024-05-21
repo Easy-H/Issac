@@ -1,14 +1,11 @@
-
 using System.Collections.Generic;
-using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
-using UnityEngine;
 
 public class Graph<T> {
 
     public class Entry {
 
         public T data;
-        private List<Entry> child;
+        private IList<Entry> child;
 
         public Entry(T data)
         {
@@ -16,7 +13,7 @@ public class Graph<T> {
             child = new List<Entry>();
         }
 
-        public List<Entry> GetChild() {
+        public IList<Entry> GetChild() {
             return child;
         }
 
@@ -26,29 +23,13 @@ public class Graph<T> {
         }
     }
 
-    [System.Serializable]
-    public class Edge {
-        public int ParentIdx;
-        public int ChildIdx;
-
-        public Edge(int parent, int child)
-        {
-            ParentIdx = parent;
-            ChildIdx = child;
-        }
-    }
-
-    public interface GraphData {
-        public T[] GetData();
-        public Edge[] GetEdge();
-    }
     public Entry Root { get; protected set; }
 
     public Graph() {
         Root = null;
     }
 
-    public Graph(GraphData data)
+    public Graph(IGraph<T>.GraphData data)
     {
         T[] entryData = data.GetData();
         Entry[] _entrys = new Entry[entryData.Length];
@@ -59,7 +40,7 @@ public class Graph<T> {
         }
         Root = _entrys[0];
 
-        foreach (Edge edge in data.GetEdge())
+        foreach (IGraph<T>.Edge edge in data.GetEdge())
         {
             if (edge.ParentIdx > _entrys.Length || edge.ChildIdx > _entrys.Length) continue;
 

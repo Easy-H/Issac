@@ -2,13 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Joint : MonoBehaviour
+public class Joint : MonoBehaviour, IJoint
 {
     // Start is called before the first frame update
-    public void Set(MapTile tile1, MapTile tile2) {
+    public void Set(IRoom tile1, IRoom tile2) {
 
-        Vector2 startPos = tile1.transform.position;
-        Vector2 endPos = tile2.transform.position;
+        Vector2 startPos = tile1.GetPosition();
+        Vector2 endPos = tile2.GetPosition();
 
         transform.position = (startPos + endPos) / 2;
         float value;
