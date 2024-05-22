@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class MapTile : MonoBehaviour, IRoom
+public class Room : MonoBehaviour, IRoom
 {
     [SerializeField] Vector2 _size;
 
@@ -18,10 +18,10 @@ public class MapTile : MonoBehaviour, IRoom
     [SerializeField] SpriteRenderer spr;
     [SerializeField] Text _txt;
 
-    public void Set(Vector2 pos, IRoom.RoomType type)
+    public void Set(Vector2 pos)
     {
         transform.position = pos;
-        name = type.ToString();
+        //name = type.ToString();
 
         _txt.text = gameObject.name;
         switch (gameObject.name)

@@ -10,7 +10,7 @@ public interface IRoom {
         Root, Normal, Hub, Reward, Boss, Shop
     }
 
-    public void Set(Vector2 pos, RoomType type);
+    public void Set(Vector2 pos);
 
     public void JointAt(Vector3 pos);
 
